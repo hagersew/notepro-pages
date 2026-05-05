@@ -8,13 +8,14 @@ import {
   Heading,
   HStack,
   Image,
-  Link,
+  Link as ChakraLink,
   List,
   Separator,
   Stack,
   Text,
   VStack,
 } from '@chakra-ui/react'
+import { Link as RouterLink, Route, Routes } from 'react-router-dom'
 import {
   FiBookOpen,
   FiEdit3,
@@ -91,7 +92,7 @@ const galleryImages = [
   },
 ]
 
-function App() {
+function LandingPage() {
   return (
     <Box bg="gray.50" color="gray.800">
       <Box
@@ -307,21 +308,60 @@ function App() {
           <Text color="gray.500" fontSize="sm">
             Highlight, annotate, and share the web.
           </Text>
-          <Link
-            href="https://hagersew.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            color="blue.600"
-            display="inline-flex"
-            alignItems="center"
-            gap={1}
-            fontWeight="medium"
-          >
-            Powered by Hagersew <FiExternalLink />
-          </Link>
+          <HStack gap={4}>
+            <ChakraLink asChild color="blue.600" fontWeight="medium">
+              <RouterLink to="/privacy-policy">Privacy Policy</RouterLink>
+            </ChakraLink>
+            <ChakraLink
+              href="https://hagersew.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              color="blue.600"
+              display="inline-flex"
+              alignItems="center"
+              gap={1}
+              fontWeight="medium"
+            >
+              Powered by Hagersew <FiExternalLink />
+            </ChakraLink>
+          </HStack>
         </Flex>
       </Container>
     </Box>
+  )
+}
+
+function PrivacyPolicyPage() {
+  return (
+    <Box bg="gray.50" minH="100vh" py={{ base: 12, md: 20 }}>
+      <Container maxW="3xl">
+        <Stack gap={6}>
+          <Heading size="2xl">Privacy Policy</Heading>
+          <Text color="gray.700">
+            NotePro does not collect, store, or share any personal user data.
+          </Text>
+          <Text color="gray.700">
+            All settings and preferences are stored locally on the user&apos;s device using Chrome
+            storage APIs. No browsing data is transmitted or accessed externally.
+          </Text>
+          <Text color="gray.700">
+            We respect user privacy and are committed to keeping your browsing experience secure.
+          </Text>
+          <ChakraLink asChild color="blue.600" fontWeight="medium" width="fit-content">
+            <RouterLink to="/">Back to Home</RouterLink>
+          </ChakraLink>
+        </Stack>
+      </Container>
+    </Box>
+  )
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+    </Routes>
   )
 }
 
