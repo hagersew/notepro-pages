@@ -16,7 +16,7 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { useState } from 'react'
-import { Link as RouterLink, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import {
   FiBookOpen,
   FiChevronLeft,
@@ -131,8 +131,8 @@ function LandingPage() {
               <ChakraLink href="#gallery" color="gray.600" _hover={{ color: 'blue.600' }}>
                 Gallery
               </ChakraLink>
-              <ChakraLink asChild color="gray.600" _hover={{ color: 'blue.600' }}>
-                <RouterLink to="/privacy-policy">Privacy</RouterLink>
+              <ChakraLink href="/privacy-policy.html" color="gray.600" _hover={{ color: 'blue.600' }}>
+                Privacy
               </ChakraLink>
             </HStack>
 
@@ -416,8 +416,8 @@ function LandingPage() {
             Highlight, annotate, and share the web.
           </Text>
           <HStack gap={4}>
-            <ChakraLink asChild color="blue.600" fontWeight="medium">
-              <RouterLink to="/privacy-policy">Privacy Policy</RouterLink>
+            <ChakraLink href="/privacy-policy.html" color="blue.600" fontWeight="medium">
+              Privacy Policy
             </ChakraLink>
             <ChakraLink
               href="https://hagersew.com"
@@ -438,36 +438,10 @@ function LandingPage() {
   )
 }
 
-function PrivacyPolicyPage() {
-  return (
-    <Box bg="gray.50" minH="100vh" py={{ base: 12, md: 20 }}>
-      <Container maxW="3xl">
-        <Stack gap={6}>
-          <Heading size="2xl">Privacy Policy</Heading>
-          <Text color="gray.700">
-            NotePro does not collect, store, or share any personal user data.
-          </Text>
-          <Text color="gray.700">
-            All settings and preferences are stored locally on the user&apos;s device using Chrome
-            storage APIs. No browsing data is transmitted or accessed externally.
-          </Text>
-          <Text color="gray.700">
-            We respect user privacy and are committed to keeping your browsing experience secure.
-          </Text>
-          <ChakraLink asChild color="blue.600" fontWeight="medium" width="fit-content">
-            <RouterLink to="/">Back to Home</RouterLink>
-          </ChakraLink>
-        </Stack>
-      </Container>
-    </Box>
-  )
-}
-
 function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
-      <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
     </Routes>
   )
 }

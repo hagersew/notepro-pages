@@ -57,7 +57,7 @@ Default local URL: [http://localhost:5173](http://localhost:5173)
 ## Routes
 
 - `/` - NotePro landing page
-- `/privacy-policy` - Privacy Policy page
+- `/privacy-policy.html` - dedicated Privacy Policy page
 
 ## Content Updates
 
