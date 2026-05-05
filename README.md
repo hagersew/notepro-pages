@@ -1,4 +1,4 @@
-# NotePro Pages
+# NotePro
 
 NotePro transforms the way you interact with the web. Instead of copying content into separate apps, you can highlight text directly on any webpage, add your own notes, and keep everything organized in one place.
 
