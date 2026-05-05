@@ -15,9 +15,12 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
+import { useState } from 'react'
 import { Link as RouterLink, Route, Routes } from 'react-router-dom'
 import {
   FiBookOpen,
+  FiChevronLeft,
+  FiChevronRight,
   FiEdit3,
   FiExternalLink,
   FiGlobe,
@@ -32,6 +35,7 @@ import gallery1 from './assets/gallery-1.png'
 import gallery2 from './assets/gallery-2.png'
 import gallery3 from './assets/gallery-3.png'
 import gallery4 from './assets/gallery-4.png'
+import gallery5 from './assets/gallery-5.png'
 
 const keyFeatures = [
   {
@@ -90,11 +94,55 @@ const galleryImages = [
     src: gallery4,
     alt: 'Lucy Tour Guide page with Open NotePro button',
   },
+  {
+    src: gallery5,
+    alt: 'NotePro expanded sidebar with grouped saved highlights',
+  },
 ]
 
 function LandingPage() {
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState(0)
+  const totalGalleryImages = galleryImages.length
+
+  const goToPreviousSlide = () => {
+    setActiveGalleryIndex((prevIndex) => (prevIndex - 1 + totalGalleryImages) % totalGalleryImages)
+  }
+
+  const goToNextSlide = () => {
+    setActiveGalleryIndex((prevIndex) => (prevIndex + 1) % totalGalleryImages)
+  }
+
   return (
     <Box bg="gray.50" color="gray.800">
+      <Box bg="white" borderBottomWidth="1px" borderColor="gray.200" position="sticky" top={0} zIndex={10}>
+        <Container maxW="7xl" py={3}>
+          <Flex align="center" justify="space-between" gap={4}>
+            <HStack gap={3}>
+              <Image src={logo} alt="NotePro logo" boxSize="14" borderRadius="full" />
+              <Text fontWeight="bold" fontSize="xl">
+                NotePro
+              </Text>
+            </HStack>
+
+            <HStack gap={6} display={{ base: 'none', md: 'flex' }}>
+              <ChakraLink href="#features" color="gray.600" _hover={{ color: 'blue.600' }}>
+                Features
+              </ChakraLink>
+              <ChakraLink href="#gallery" color="gray.600" _hover={{ color: 'blue.600' }}>
+                Gallery
+              </ChakraLink>
+              <ChakraLink asChild color="gray.600" _hover={{ color: 'blue.600' }}>
+                <RouterLink to="/privacy-policy">Privacy</RouterLink>
+              </ChakraLink>
+            </HStack>
+
+            <Button size="sm" colorPalette="blue">
+              Download Extension
+            </Button>
+          </Flex>
+        </Container>
+      </Box>
+
       <Box
         bgGradient="linear(to-b, blue.50, white)"
         borderBottomWidth="1px"
@@ -127,10 +175,7 @@ function LandingPage() {
               </Text>
               <HStack gap={3} flexWrap="wrap">
                 <Button size="lg" colorPalette="blue">
-                  Get Started
-                </Button>
-                <Button size="lg" variant="outline">
-                  Watch Demo
+                  Download Extension
                 </Button>
               </HStack>
               <Text fontSize="sm" color="gray.500">
@@ -181,7 +226,7 @@ function LandingPage() {
         </Container>
       </Box>
 
-      <Container maxW="7xl" py={{ base: 14, md: 20 }}>
+      <Container id="features" maxW="7xl" py={{ base: 14, md: 20 }}>
         <Stack gap={6} mb={10}>
           <Heading size="2xl">Why NotePro?</Heading>
           <Text color="gray.600" maxW="3xl" fontSize="lg">
@@ -214,7 +259,7 @@ function LandingPage() {
         </Grid>
       </Container>
 
-      <Box bg="white" py={{ base: 14, md: 20 }} borderTopWidth="1px" borderColor="gray.200">
+      <Box id="gallery" bg="white" py={{ base: 14, md: 20 }} borderTopWidth="1px" borderColor="gray.200">
         <Container maxW="7xl">
           <Grid templateColumns={{ base: '1fr', lg: '1.2fr 0.8fr' }} gap={10} alignItems="center">
             <Card.Root overflow="hidden" borderRadius="2xl" shadow="lg">
@@ -282,13 +327,75 @@ function LandingPage() {
             </Text>
           </Stack>
 
-          <Grid templateColumns={{ base: '1fr', md: '1fr 1fr' }} gap={6}>
-            {galleryImages.map((image) => (
-              <Card.Root key={image.alt} overflow="hidden" borderRadius="xl" shadow="md">
-                <Image src={image.src} alt={image.alt} objectFit="cover" />
+          <Stack gap={5}>
+            <Box position="relative">
+              <Card.Root overflow="hidden" borderRadius="xl" shadow="md">
+                <Flex
+                  w={`${totalGalleryImages * 100}%`}
+                  transform={`translateX(-${activeGalleryIndex * (100 / totalGalleryImages)}%)`}
+                  transition="transform 0.35s ease"
+                >
+                  {galleryImages.map((image) => (
+                    <Box key={image.alt} w={`${100 / totalGalleryImages}%`} flexShrink={0}>
+                      <Image src={image.src} alt={image.alt} objectFit="cover" w="100%" />
+                    </Box>
+                  ))}
+                </Flex>
               </Card.Root>
-            ))}
-          </Grid>
+
+              <Button
+                aria-label="Show previous gallery image"
+                onClick={goToPreviousSlide}
+                position="absolute"
+                left={3}
+                top="50%"
+                transform="translateY(-50%)"
+                rounded="full"
+                size="sm"
+                bg="blackAlpha.700"
+                color="white"
+                _hover={{ bg: 'blackAlpha.800' }}
+                _active={{ bg: 'blackAlpha.900' }}
+              >
+                <FiChevronLeft />
+              </Button>
+              <Button
+                aria-label="Show next gallery image"
+                onClick={goToNextSlide}
+                position="absolute"
+                right={3}
+                top="50%"
+                transform="translateY(-50%)"
+                rounded="full"
+                size="sm"
+                bg="blackAlpha.700"
+                color="white"
+                _hover={{ bg: 'blackAlpha.800' }}
+                _active={{ bg: 'blackAlpha.900' }}
+              >
+                <FiChevronRight />
+              </Button>
+            </Box>
+
+            <HStack justify="center" gap={2}>
+              {galleryImages.map((image, index) => (
+                <Button
+                  key={image.alt}
+                  aria-label={`Go to gallery image ${index + 1}`}
+                  onClick={() => setActiveGalleryIndex(index)}
+                  minW="unset"
+                  p={0}
+                  w={activeGalleryIndex === index ? 8 : 3}
+                  h={3}
+                  borderRadius="full"
+                  bg={activeGalleryIndex === index ? 'blue.600' : 'gray.300'}
+                  _hover={{
+                    bg: activeGalleryIndex === index ? 'blue.700' : 'gray.400',
+                  }}
+                />
+              ))}
+            </HStack>
+          </Stack>
         </Container>
       </Box>
 
@@ -302,7 +409,7 @@ function LandingPage() {
           gap={4}
         >
           <HStack gap={3}>
-            <Image src={logo} alt="NotePro logo" boxSize="10" borderRadius="md" />
+            <Image src={logo} alt="NotePro logo" boxSize="14" borderRadius="md" />
             <Text fontWeight="bold">NotePro</Text>
           </HStack>
           <Text color="gray.500" fontSize="sm">
