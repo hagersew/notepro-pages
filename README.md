@@ -1,30 +1,79 @@
-# React + TypeScript + Vite
+# NotePro Pages
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+NotePro transforms the way you interact with the web. Instead of copying content into separate apps, you can highlight text directly on any webpage, add your own notes, and keep everything organized in one place.
 
-Currently, two official plugins are available:
+Whether you're researching, learning, or collecting ideas, NotePro helps you capture insights exactly where they happen.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project currently includes:
 
-## Expanding the ESLint configuration
+- Landing page with product messaging, features, use-cases, and image gallery slider
+- Privacy Policy page
+- Responsive layout and image-heavy product showcase sections
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tech Stack
 
-- Configure the top-level `parserOptions` property like this:
+- React 18
+- TypeScript
+- Vite
+- Chakra UI
+- React Router
+- React Icons
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Local Development
+
+### Prerequisites
+
+- Node.js 18+ (recommended)
+- npm
+
+### Install
+
+```bash
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Run Dev Server
+
+```bash
+npm run dev
+```
+
+Default local URL: [http://localhost:5173](http://localhost:5173)
+
+## Available Scripts
+
+- `npm run dev` - start Vite dev server
+- `npm run build` - type-check and create production build
+- `npm run preview` - preview the production build locally
+- `npm run lint` - run ESLint
+
+## Project Structure
+
+- `src/App.tsx` - main page content, routing, and section components
+- `src/main.tsx` - app bootstrap and providers
+- `src/assets/` - product/gallery image assets
+- `src/index.css` / `src/App.css` - global and app-level styles
+
+## Routes
+
+- `/` - NotePro landing page
+- `/privacy-policy` - Privacy Policy page
+
+## Content Updates
+
+For most product-page edits, start in `src/App.tsx`:
+
+- Hero copy and call-to-actions
+- Feature cards
+- Gallery image list and slider behavior
+- Footer links and legal navigation
+
+When changing gallery visuals, place new images in `src/assets/` and update the `galleryImages` array in `src/App.tsx`.
+
+## Build Output
+
+Production files are generated in `dist/` after running:
+
+```bash
+npm run build
+```
