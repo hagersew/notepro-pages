@@ -100,6 +100,9 @@ const galleryImages = [
   },
 ]
 
+const installUrl =
+  'https://chromewebstore.google.com/detail/notepro/iooadjjbebjhidaabjjnkkmhbaljckdh'
+
 function LandingPage() {
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(0)
   const totalGalleryImages = galleryImages.length
@@ -110,6 +113,10 @@ function LandingPage() {
 
   const goToNextSlide = () => {
     setActiveGalleryIndex((prevIndex) => (prevIndex + 1) % totalGalleryImages)
+  }
+
+  const goToInstall = () => {
+    window.open(installUrl, '_blank', 'noopener,noreferrer')
   }
 
   return (
@@ -136,7 +143,7 @@ function LandingPage() {
               </ChakraLink>
             </HStack>
 
-            <Button size="sm" colorPalette="blue">
+            <Button onClick={goToInstall} size="sm" colorPalette="blue">
               Download Extension
             </Button>
           </Flex>
@@ -174,7 +181,7 @@ function LandingPage() {
                 with ease.
               </Text>
               <HStack gap={3} flexWrap="wrap">
-                <Button size="lg" colorPalette="blue">
+                <Button onClick={goToInstall} size="lg" colorPalette="blue">
                   Download Extension
                 </Button>
               </HStack>
@@ -304,7 +311,7 @@ function LandingPage() {
                   matters.
                 </Text>
                 <Flex gap={3} flexWrap="wrap">
-                  <Button bg="white" color="blue.700" _hover={{ bg: 'blue.100' }}>
+                  <Button onClick={goToInstall} bg="white" color="blue.700" _hover={{ bg: 'blue.100' }}>
                     Install NotePro
                   </Button>
                   <Button variant="outline" borderColor="blue.300" color="white">
