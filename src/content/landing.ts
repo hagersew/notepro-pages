@@ -6,6 +6,7 @@ import {
   FiGlobe,
   FiShare2,
 } from 'react-icons/fi'
+import { SiFirefox, SiGooglechrome } from 'react-icons/si'
 import noteproLogo from '../assets/notepro-logo.png'
 import gallery1 from '../assets/gallery-1.png'
 import gallery2 from '../assets/gallery-2.png'
@@ -13,8 +14,36 @@ import gallery3 from '../assets/gallery-3.png'
 import gallery4 from '../assets/gallery-4.png'
 import gallery5 from '../assets/gallery-5.png'
 
-export const installUrl =
+export const chromeInstallUrl =
   'https://chromewebstore.google.com/detail/notepro/iooadjjbebjhidaabjjnkkmhbaljckdh'
+
+export const firefoxInstallUrl =
+  'https://addons.mozilla.org/en-US/firefox/addon/notepro/'
+
+export type StoreLink = {
+  id: 'chrome' | 'firefox'
+  eyebrow: string
+  headline: string
+  url: string
+  icon: IconType
+}
+
+export const storeLinks: StoreLink[] = [
+  {
+    id: 'chrome',
+    eyebrow: 'available in the',
+    headline: 'chrome web store',
+    url: chromeInstallUrl,
+    icon: SiGooglechrome,
+  },
+  {
+    id: 'firefox',
+    eyebrow: 'GET THE',
+    headline: 'ADD-ON',
+    url: firefoxInstallUrl,
+    icon: SiFirefox,
+  },
+]
 
 export const logo = noteproLogo
 
@@ -130,6 +159,3 @@ export const galleryImages = [
   },
 ]
 
-export function goToInstall() {
-  window.open(installUrl, '_blank', 'noopener,noreferrer')
-}

@@ -12,9 +12,9 @@ import {
 } from '@chakra-ui/react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
-import { goToInstall, heroPrimary, heroSecondary } from '../../content/landing'
+import { heroPrimary, heroSecondary } from '../../content/landing'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
-import { PrimaryButton } from '../ui/PrimaryButton'
+import { StoreButtons } from '../ui/StoreButtons'
 
 const easeOut = [0.22, 1, 0.36, 1] as const
 
@@ -83,10 +83,8 @@ export function Hero() {
                   </Text>
                 )}
                 {item.content === 'cta' && (
-                  <HStack gap={4} flexWrap="wrap">
-                    <PrimaryButton onClick={goToInstall} size="lg" px={8}>
-                      Download Extension
-                    </PrimaryButton>
+                  <HStack gap={4} flexWrap="wrap" align="center">
+                    <StoreButtons />
                     <Link
                       href="#how-it-works"
                       fontWeight="semibold"

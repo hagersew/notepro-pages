@@ -12,9 +12,9 @@ import {
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { FiMenu, FiX } from 'react-icons/fi'
-import { goToInstall, logo } from '../../content/landing'
+import { logo } from '../../content/landing'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
-import { PrimaryButton } from '../ui/PrimaryButton'
+import { StoreButtons } from '../ui/StoreButtons'
 
 const navLinks = [
   { href: '#features', label: 'Features' },
@@ -82,13 +82,7 @@ export function Header() {
           </HStack>
 
           <HStack gap={2}>
-            <PrimaryButton
-              onClick={goToInstall}
-              size="sm"
-              display={{ base: 'none', sm: 'inline-flex' }}
-            >
-              Download Extension
-            </PrimaryButton>
+            <StoreButtons variant="compact" display={{ base: 'none', sm: 'inline-flex' }} />
             <Button
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               variant="ghost"
@@ -132,9 +126,7 @@ export function Header() {
                     </ChakraLink>
                   </motion.div>
                 ))}
-                <PrimaryButton onClick={goToInstall} w="full" mt={2}>
-                  Download Extension
-                </PrimaryButton>
+                <StoreButtons variant="compact" fullWidth mt={2} />
               </Stack>
             </Container>
           </motion.div>

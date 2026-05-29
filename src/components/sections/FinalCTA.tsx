@@ -1,7 +1,6 @@
 import { Box, Container, Heading, Stack, Text } from '@chakra-ui/react'
-import { goToInstall } from '../../content/landing'
 import { FadeIn } from '../motion'
-import { PrimaryButton } from '../ui/PrimaryButton'
+import { StoreButtons } from '../ui/StoreButtons'
 
 export function FinalCTA() {
   return (
@@ -18,19 +17,10 @@ export function FinalCTA() {
               Ready to capture the web your way?
             </Heading>
             <Text color="whiteAlpha.800" fontSize="lg" maxW="xl" lineHeight="1.65">
-              Install NotePro free from the Chrome Web Store and start highlighting in seconds.
+              Install NotePro free for Chrome or Firefox and start highlighting in seconds.
             </Text>
             <Box className="pulse-ring" display="inline-block" borderRadius="lg">
-              <PrimaryButton
-                onClick={goToInstall}
-                size="lg"
-                px={10}
-                bg="white"
-                color="brand.700"
-                _hover={{ bg: 'brand.50', color: 'brand.800' }}
-              >
-                Get NotePro for Chrome
-              </PrimaryButton>
+              <StoreButtons variant="inverted" />
             </Box>
           </Stack>
         </FadeIn>

@@ -1,9 +1,7 @@
 import { Box, Container, Flex, Grid, Heading, Stack, Text } from '@chakra-ui/react'
-import { motion } from 'framer-motion'
-import { FiArrowRight } from 'react-icons/fi'
-import { goToInstall, useCases } from '../../content/landing'
+import { useCases } from '../../content/landing'
 import { FadeIn, StaggerChildren, StaggerItem } from '../motion'
-import { PrimaryButton } from '../ui/PrimaryButton'
+import { StoreButtons } from '../ui/StoreButtons'
 import { SectionHeader } from '../ui/SectionHeader'
 
 export function UseCases() {
@@ -41,14 +39,7 @@ export function UseCases() {
                     matters.
                   </Text>
                   <Flex gap={3} flexWrap="wrap">
-                    <PrimaryButton onClick={goToInstall} size="lg">
-                      <motion.span
-                        style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}
-                        whileHover={{ x: 4 }}
-                      >
-                        Install NotePro <FiArrowRight />
-                      </motion.span>
-                    </PrimaryButton>
+                    <StoreButtons />
                   </Flex>
                 </Stack>
               </Box>
